@@ -13,6 +13,10 @@ RUN npm run build
 RUN ls ./build
 
 FROM httpd
+RUN apt update && \
+apt -y upgrade && \
+apt -y install curl
+
 WORKDIR /usr/local/apache2/htdocs/
 COPY --from=builder /opt/altere_bruder/frontend/build/ .
 
